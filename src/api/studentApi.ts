@@ -39,25 +39,39 @@ const toFormData = (student: UpdateStudentPayload) => {
 }
 
 export const getStudents = async () => {
-  const response = await axios.get(API_URL);
+  const response = await axios.get(`${API_URL}/api/students`);
   return response.data;
 };
 
 export const createStudent = async (student: CreateStudentPayload) => {
-  const response = await axios.post(API_URL, toFormData(student), {
-    headers: { 'Content-Type': 'multipart/form-data' },
-  });
+   const response = await axios.post(
+    `${API_URL}/api/students`,
+    toFormData(student),
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
   return response.data;
 };
 
 export const updateStudent = async (id: number, student: UpdateStudentPayload) => {
-  const response = await axios.put(`${API_URL}/${id}`, toFormData(student), {
-    headers: { 'Content-Type': 'multipart/form-data' },
-  });
+  const response = await axios.put(
+    `${API_URL}/api/students/${id}`,
+    toFormData(student),
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
   return response.data;
 };
 
 export const deleteStudent = async (id: number) => {
-  const response = await axios.delete(`${API_URL}/${id}`)
+  const response = await axios.delete(
+    `${API_URL}/api/students/${id}`
+  );
   return response.data
 }
